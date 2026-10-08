@@ -1,0 +1,6 @@
+@AbapCatalog.extensibility.extensible: true
+@ObjectModel.leadingEntity.name: 'ZC_API_SupplierInvHdrTP'
+define service ZAPI_SUPPLIERINVHDR01 {
+  expose ZC_API_SupplierInvHdrTP as SupplierInvHdr;
+  expose ZC_API_SupplierInvItmTP as SupplierInvItm;
+}

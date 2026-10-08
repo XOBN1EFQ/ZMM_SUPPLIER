@@ -1,0 +1,116 @@
+managed;
+strict ( 2 );
+with draft;
+extensible
+{
+  with additional save;
+  with determinations on modify;
+  with determinations on save;
+  with validations on save;
+}
+define behavior for ZR_SupplierInvHdr01TP alias SupplierInvHdr
+implementation in class ZBP_R_SupplierInvHdr01TP unique
+persistent table ZMM_SUP_INV_HDR
+extensible
+draft table ZSUPPLIERINVH00D
+query ZR_SupplierInvHdr_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   HeaderUUID,
+   InvoiceNumber,
+   CreatedAt,
+   CreatedBy,
+   LastChangedBy,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   HeaderUUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare extensible;
+
+  mapping for ZMM_SUP_INV_HDR corresponding extensible
+  {
+    HeaderUUID = HEADER_UUID;
+    CompanyCode = COMPANY_CODE;
+    SupplierName = SUPPLIER_NAME;
+    PoNumber = PO_NUMBER;
+    InvoiceNumber = INVOICE_NUMBER;
+    InvoiceDate = INVOICE_DATE;
+    PostingDate = POSTING_DATE;
+    TotalAmount = TOTAL_AMOUNT;
+    CurrencyCode = CURRENCY_CODE;
+    Description = DESCRIPTION;
+    Status = STATUS;
+    Message = MESSAGE;
+    CreatedAt = CREATED_AT;
+    CreatedBy = CREATED_BY;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _SupplierInvItm { create; with draft; }
+
+  determination CalculateInvoiceNumber on save
+  {
+    create;
+  }
+
+}
+
+define behavior for ZR_SupplierInvItmTP alias SupplierInvItm
+implementation in class ZBP_R_SupplierInvItmTP unique
+persistent table ZMM_SUP_INV_ITM
+extensible
+draft table ZSUPPLIERINVI00D
+etag master LocalLastChangedAt
+lock dependent by _SupplierInvHdr
+authorization dependent by _SupplierInvHdr
+{
+  field ( readonly )
+   ItemUUID,
+   ParentUUID,
+   ItemID,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   ItemUUID;
+
+
+  update;
+  delete;
+
+  mapping for ZMM_SUP_INV_ITM corresponding extensible
+  {
+    ItemUUID = ITEM_UUID;
+    ParentUUID = PARENT_UUID;
+    ItemID = ITEM_ID;
+    Quantity = QUANTITY;
+    QuantityUnit = QUANTITY_UNIT;
+    Amount = AMOUNT;
+    CurrencyCode = CURRENCY_CODE;
+    Description = DESCRIPTION;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _SupplierInvHdr { with draft; }
+
+  determination CalculateItemID on save
+  {
+    create;
+  }
+
+}

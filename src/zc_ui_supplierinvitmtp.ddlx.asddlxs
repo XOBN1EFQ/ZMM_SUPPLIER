@@ -1,0 +1,83 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'SupplierInvItm', 
+    typeNamePlural: 'SupplierInvItms', 
+    title: {
+      type: #STANDARD, 
+      label: 'Supplier Invoice Item', 
+      value: 'ItemID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'ItemID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_UI_SupplierInvItmTP with
+{
+  @UI.facet: [ {
+    id: 'idSupplierInvItm', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'SupplierInvItm', 
+    position: 10 
+  } ]
+  @UI.hidden: true
+  ItemUUID;
+  
+  @UI.hidden: true
+  ParentUUID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH, 
+    label: 'ItemID'
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'ItemID'
+  } ]
+  ItemID;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH, 
+    label: 'Quantity'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Quantity'
+  } ]
+  Quantity;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH, 
+    label: 'Amount'
+  } ]
+  @UI.identification: [ {
+    position: 60 , 
+    label: 'Amount'
+  } ]
+  Amount;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH, 
+    label: 'Description'
+  } ]
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'Description'
+  } ]
+  Description;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

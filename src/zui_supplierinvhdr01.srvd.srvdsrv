@@ -1,0 +1,8 @@
+@AbapCatalog.extensibility.extensible: true
+@ObjectModel.leadingEntity.name: 'ZC_UI_SupplierInvHdrTP'
+define service ZUI_SupplierInvHdr01 {
+  expose ZC_UI_SupplierInvHdrTP as SupplierInvHdr;
+  expose ZC_UI_SupplierInvItmTP as SupplierInvItm;
+  expose I_UnitOfMeasure        as UnitOfMeasure;
+  expose I_Currency             as Currency;
+}

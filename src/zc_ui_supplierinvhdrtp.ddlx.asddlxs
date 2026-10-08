@@ -1,0 +1,179 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'SupplierInvHdr', 
+    typeNamePlural: 'SupplierInvHdrs', 
+    title: {
+      type: #STANDARD, 
+      label: 'Supplier Invoice Header', 
+      value: 'InvoiceNumber'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'InvoiceNumber', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_UI_SupplierInvHdrTP with
+{
+  @UI.facet: [ {
+    id: 'idCollection', 
+    type: #COLLECTION, 
+    label: 'SupplierInvHdr', 
+    position: 10 
+  }, 
+  {
+    id: 'idIdentification', 
+    parentId: 'idCollection', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'General Information', 
+    position: 20 
+  }, 
+  {
+    id: 'idSupplierInvItm', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'SupplierInvItm', 
+    position: 30 , 
+    targetElement: '_SupplierInvItm'
+  } ]
+  @UI.hidden: true
+  HeaderUUID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH, 
+    label: 'CompanyCode'
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'CompanyCode'
+  } ]
+  CompanyCode;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH, 
+    label: 'SupplierName'
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'SupplierName'
+  } ]
+  SupplierName;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH, 
+    label: 'PoNumber'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'PoNumber'
+  } ]
+  PoNumber;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #HIGH, 
+    label: 'InvoiceNumber'
+  } ]
+  @UI.identification: [ {
+    position: 50 , 
+    label: 'InvoiceNumber'
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  InvoiceNumber;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH, 
+    label: 'InvoiceDate'
+  } ]
+  @UI.identification: [ {
+    position: 60 , 
+    label: 'InvoiceDate'
+  } ]
+  InvoiceDate;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #HIGH, 
+    label: 'PostingDate'
+  } ]
+  @UI.identification: [ {
+    position: 70 , 
+    label: 'PostingDate'
+  } ]
+  PostingDate;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH, 
+    label: 'TotalAmount'
+  } ]
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'TotalAmount'
+  } ]
+  TotalAmount;
+  
+  @UI.selectionField: [ {
+    position: 90 
+  } ]
+  CurrencyCode;
+  
+  @UI.lineItem: [ {
+    position: 100 , 
+    importance: #HIGH, 
+    label: 'Description'
+  } ]
+  @UI.identification: [ {
+    position: 100 , 
+    label: 'Description'
+  } ]
+  Description;
+  
+  @UI.lineItem: [ {
+    position: 110 , 
+    importance: #HIGH, 
+    label: 'Status'
+  } ]
+  @UI.identification: [ {
+    position: 110 , 
+    label: 'Status'
+  } ]
+  Status;
+  
+  @UI.lineItem: [ {
+    position: 120 , 
+    importance: #HIGH, 
+    label: 'Message'
+  } ]
+  @UI.identification: [ {
+    position: 120 , 
+    label: 'Message'
+  } ]
+  Message;
+  
+  @UI.hidden: true
+  CreatedAt;
+  
+  @UI.hidden: true
+  CreatedBy;
+  
+  @UI.hidden: true
+  LastChangedBy;
+  
+  @UI.hidden: true
+  LastChangedAt;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
