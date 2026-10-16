@@ -12,7 +12,7 @@
   }
 }
 define root view entity ZI_SupplierInvHdr01TP
-  provider contract TRANSACTIONAL_INTERFACE
+  provider contract transactional_interface
   as projection on ZR_SupplierInvHdr01TP as SupplierInvHdr
 {
   key HeaderUUID,
@@ -27,6 +27,8 @@ define root view entity ZI_SupplierInvHdr01TP
   Description,
   Status,
   Message,
+  Filename,
+  Link,
   CreatedAt,
   CreatedBy,
   LastChangedBy,

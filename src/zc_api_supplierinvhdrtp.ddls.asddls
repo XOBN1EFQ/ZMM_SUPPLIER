@@ -12,7 +12,7 @@
     maximumBytes: 10000 
   }
 }
-@ObjectModel.semanticKey: [ 'InvoiceNumber' ]
+//@ObjectModel.semanticKey: [ 'InvoiceNumber' ]
 @Search.searchable: true
 define root view entity ZC_API_SupplierInvHdrTP
   provider contract transactional_query
@@ -40,6 +40,8 @@ define root view entity ZC_API_SupplierInvHdrTP
   Description,
   Status,
   Message,
+  Filename,
+  Link,
   CreatedAt,
   CreatedBy,
   LastChangedBy,

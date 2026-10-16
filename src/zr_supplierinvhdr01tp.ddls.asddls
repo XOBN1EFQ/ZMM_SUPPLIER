@@ -14,33 +14,35 @@
   }
 }
 define root view entity ZR_SupplierInvHdr01TP
-  as select from ZMM_SUP_INV_HDR as SupplierInvHdr
+  as select from zmm_sup_inv_hdr as SupplierInvHdr
   association [1] to ZE_SupplierInvHdr as _Extension on $projection.HeaderUUID = _Extension.HeaderUUID
   composition [0..*] of ZR_SupplierInvItmTP as _SupplierInvItm
 {
-  key HEADER_UUID as HeaderUUID,
-  COMPANY_CODE as CompanyCode,
-  SUPPLIER_NAME as SupplierName,
-  PO_NUMBER as PoNumber,
-  INVOICE_NUMBER as InvoiceNumber,
-  INVOICE_DATE as InvoiceDate,
-  POSTING_DATE as PostingDate,
+  key header_uuid as HeaderUUID,
+  company_code as CompanyCode,
+  supplier_name as SupplierName,
+  po_number as PoNumber,
+  invoice_number as InvoiceNumber,
+  invoice_date as InvoiceDate,
+  posting_date as PostingDate,
   @Semantics.amount.currencyCode: 'CurrencyCode'
-  TOTAL_AMOUNT as TotalAmount,
-  CURRENCY_CODE as CurrencyCode,
-  DESCRIPTION as Description,
-  STATUS as Status,
-  MESSAGE as Message,
+  total_amount as TotalAmount,
+  currency_code as CurrencyCode,
+  description as Description,
+  status as Status,
+  filename as Filename,
+  message as Message,
+  link as Link,
   @Semantics.systemDateTime.createdAt: true
-  CREATED_AT as CreatedAt,
+  created_at as CreatedAt,
   @Semantics.user.createdBy: true
-  CREATED_BY as CreatedBy,
+  created_by as CreatedBy,
   @Semantics.user.lastChangedBy: true
-  LAST_CHANGED_BY as LastChangedBy,
+  last_changed_by as LastChangedBy,
   @Semantics.systemDateTime.lastChangedAt: true
-  LAST_CHANGED_AT as LastChangedAt,
+  last_changed_at as LastChangedAt,
   @Semantics.systemDateTime.localInstanceLastChangedAt: true
-  LOCAL_LAST_CHANGED_AT as LocalLastChangedAt,
+  local_last_changed_at as LocalLastChangedAt,
   _SupplierInvItm,
   _Extension
 }

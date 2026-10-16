@@ -1,0 +1,12 @@
+extension implementation in class zbp_r_supplierinvhdr01tp_ext unique;
+
+extend behavior for SupplierInvHdr
+{
+
+    determination zzgetAdditionalDetails on save { create; update; }
+    validation zzcheckData on save { create; update; }
+}
+
+extend behavior for SupplierInvItm
+{
+}

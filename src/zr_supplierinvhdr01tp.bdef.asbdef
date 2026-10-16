@@ -1,4 +1,4 @@
-managed;
+managed implementation in class ZBP_R_SupplierInv unique;
 strict ( 2 );
 with draft;
 extensible
@@ -10,7 +10,8 @@ extensible
 }
 define behavior for ZR_SupplierInvHdr01TP alias SupplierInvHdr
 implementation in class ZBP_R_SupplierInvHdr01TP unique
-persistent table ZMM_SUP_INV_HDR
+with unmanaged save
+//persistent table ZMM_SUP_INV_HDR
 extensible
 draft table ZSUPPLIERINVH00D
 query ZR_SupplierInvHdr_D
@@ -20,7 +21,6 @@ authorization master( global )
 {
   field ( readonly )
    HeaderUUID,
-   InvoiceNumber,
    CreatedAt,
    CreatedBy,
    LastChangedBy,

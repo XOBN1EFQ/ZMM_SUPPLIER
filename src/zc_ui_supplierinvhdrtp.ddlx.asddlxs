@@ -1,19 +1,19 @@
 @Metadata.layer: #CUSTOMER
 @UI: {
   headerInfo: {
-    typeName: 'SupplierInvHdr', 
-    typeNamePlural: 'SupplierInvHdrs', 
+    typeName: 'Supplier Invoice',
+    typeNamePlural: 'Supplier Invoice',
     title: {
-      type: #STANDARD, 
-      label: 'Supplier Invoice Header', 
+      type: #STANDARD,
+      label: 'Supplier Invoice Header',
       value: 'InvoiceNumber'
     }
-  }, 
+  },
   presentationVariant: [ {
     sortOrder: [ {
-      by: 'InvoiceNumber', 
+      by: 'InvoiceNumber',
       direction: #DESC
-    } ], 
+    } ],
     visualizations: [ {
       type: #AS_LINEITEM
     } ]
@@ -22,158 +22,186 @@
 annotate view ZC_UI_SupplierInvHdrTP with
 {
   @UI.facet: [ {
-    id: 'idCollection', 
-    type: #COLLECTION, 
-    label: 'SupplierInvHdr', 
-    position: 10 
-  }, 
+    id: 'idCollection',
+    type: #COLLECTION,
+    label: 'Header',
+    position: 10
+  },
   {
-    id: 'idIdentification', 
-    parentId: 'idCollection', 
-    type: #IDENTIFICATION_REFERENCE, 
-    label: 'General Information', 
-    position: 20 
-  }, 
+    id: 'idIdentification',
+    parentId: 'idCollection',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'General Information',
+    position: 20
+  },
   {
-    id: 'idSupplierInvItm', 
-    type: #LINEITEM_REFERENCE, 
-    label: 'SupplierInvItm', 
-    position: 30 , 
+    id: 'idSupplierInvItm',
+    type: #LINEITEM_REFERENCE,
+    label: 'Item(s)',
+    position: 30 ,
     targetElement: '_SupplierInvItm'
   } ]
   @UI.hidden: true
   HeaderUUID;
-  
+
   @UI.lineItem: [ {
-    position: 20 , 
-    importance: #HIGH, 
-    label: 'CompanyCode'
+    position: 20 ,
+    importance: #HIGH,
+    label: 'Company Code'
   } ]
   @UI.identification: [ {
-    position: 20 , 
-    label: 'CompanyCode'
+    position: 20 ,
+    label: 'Company Code'
   } ]
   CompanyCode;
-  
+
   @UI.lineItem: [ {
-    position: 30 , 
-    importance: #HIGH, 
-    label: 'SupplierName'
+    position: 30 ,
+    importance: #HIGH,
+    label: 'Supplier Name'
   } ]
   @UI.identification: [ {
-    position: 30 , 
-    label: 'SupplierName'
+    position: 30 ,
+    label: 'Supplier Name'
   } ]
   SupplierName;
-  
+
   @UI.lineItem: [ {
-    position: 40 , 
-    importance: #HIGH, 
-    label: 'PoNumber'
+    position: 40 ,
+    importance: #HIGH,
+    label: 'PO Number'
   } ]
   @UI.identification: [ {
-    position: 40 , 
-    label: 'PoNumber'
+    position: 40 ,
+    label: 'PO Number'
   } ]
   PoNumber;
-  
+
   @UI.lineItem: [ {
-    position: 50 , 
-    importance: #HIGH, 
-    label: 'InvoiceNumber'
+    position: 50 ,
+    importance: #HIGH,
+    label: 'Invoice Number',
+    criticality: 'Status'
   } ]
   @UI.identification: [ {
-    position: 50 , 
-    label: 'InvoiceNumber'
+    position: 50 ,
+    label: 'Invoice Number',
+    criticality: 'Status'
   } ]
   @UI.selectionField: [ {
-    position: 50 
+    position: 50
   } ]
   InvoiceNumber;
-  
+
   @UI.lineItem: [ {
-    position: 60 , 
-    importance: #HIGH, 
-    label: 'InvoiceDate'
+    position: 60 ,
+    importance: #HIGH,
+    label: 'Invoice Date'
   } ]
   @UI.identification: [ {
-    position: 60 , 
-    label: 'InvoiceDate'
+    position: 60 ,
+    label: 'Invoice Date'
   } ]
   InvoiceDate;
-  
+
   @UI.lineItem: [ {
-    position: 70 , 
-    importance: #HIGH, 
-    label: 'PostingDate'
+    position: 70 ,
+    importance: #HIGH,
+    label: 'Posting Date'
   } ]
   @UI.identification: [ {
-    position: 70 , 
-    label: 'PostingDate'
+    position: 70 ,
+    label: 'Posting Date'
   } ]
   PostingDate;
-  
+
   @UI.lineItem: [ {
-    position: 80 , 
-    importance: #HIGH, 
-    label: 'TotalAmount'
+    position: 80 ,
+    importance: #HIGH,
+    label: 'Total Amount'
   } ]
   @UI.identification: [ {
-    position: 80 , 
-    label: 'TotalAmount'
+    position: 80 ,
+    label: 'Total Amount'
   } ]
   TotalAmount;
-  
+
   @UI.selectionField: [ {
-    position: 90 
+    position: 90
   } ]
   CurrencyCode;
-  
+
   @UI.lineItem: [ {
-    position: 100 , 
-    importance: #HIGH, 
+    position: 100 ,
+    importance: #HIGH,
     label: 'Description'
   } ]
   @UI.identification: [ {
-    position: 100 , 
+    position: 100 ,
     label: 'Description'
   } ]
   Description;
-  
+
   @UI.lineItem: [ {
-    position: 110 , 
-    importance: #HIGH, 
+    position: 110 ,
+    importance: #HIGH,
     label: 'Status'
   } ]
   @UI.identification: [ {
-    position: 110 , 
+    position: 110 ,
     label: 'Status'
   } ]
   Status;
-  
+
   @UI.lineItem: [ {
-    position: 120 , 
-    importance: #HIGH, 
-    label: 'Message'
+    position: 120 ,
+    importance: #HIGH,
+    label: 'Message',
+    criticality: 'Status'
   } ]
   @UI.identification: [ {
-    position: 120 , 
-    label: 'Message'
+    position: 120 ,
+    label: 'Message',
+    criticality: 'Status'
   } ]
   Message;
-  
+
+  @UI.lineItem: [ {
+    position: 150,
+    importance: #HIGH,
+    type: #WITH_URL,
+    label: 'Document Link',
+    value: 'Filename',
+    url: 'Link'
+  } ]
+  @UI.identification: [ {
+    position: 150,
+    type: #WITH_URL,
+    label: 'Document Link',
+    value: 'Filename',
+    url: 'Link'
+  } ]
+  Filename;
+
+  @UI.identification: [ {
+    position: 160,
+    label: 'Link'
+  } ]
+//  @UI.hidden: true
+  Link;
+
   @UI.hidden: true
   CreatedAt;
-  
+
   @UI.hidden: true
   CreatedBy;
-  
+
   @UI.hidden: true
   LastChangedBy;
-  
+
   @UI.hidden: true
   LastChangedAt;
-  
+
   @UI.hidden: true
   LocalLastChangedAt;
 }
