@@ -34,5 +34,7 @@ define root view entity ZI_SupplierInvHdr01TP
   LastChangedBy,
   LastChangedAt,
   LocalLastChangedAt,
+  Supplier,
+  TaxCode,
   _SupplierInvItm : redirected to composition child ZI_SupplierInvItmTP
 }

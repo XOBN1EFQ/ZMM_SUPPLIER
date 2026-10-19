@@ -7,7 +7,6 @@
   elementSuffix: 'ZAA', 
   allowNewDatasources: false, 
   allowNewCompositions: true, 
-  dataSources: [ '_Extension' ], 
   quota: {
     maximumFields: 100 , 
     maximumBytes: 10000 
@@ -15,7 +14,6 @@
 }
 define root view entity ZR_SupplierInvHdr01TP
   as select from zmm_sup_inv_hdr as SupplierInvHdr
-  association [1] to ZE_SupplierInvHdr as _Extension on $projection.HeaderUUID = _Extension.HeaderUUID
   composition [0..*] of ZR_SupplierInvItmTP as _SupplierInvItm
 {
   key header_uuid as HeaderUUID,
@@ -43,6 +41,7 @@ define root view entity ZR_SupplierInvHdr01TP
   last_changed_at as LastChangedAt,
   @Semantics.systemDateTime.localInstanceLastChangedAt: true
   local_last_changed_at as LocalLastChangedAt,
-  _SupplierInvItm,
-  _Extension
+  supplier as Supplier,
+  taxcode as TaxCode,
+  _SupplierInvItm
 }

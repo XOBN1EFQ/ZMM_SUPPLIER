@@ -22,6 +22,8 @@ CLASS lsc_zr_supplierinvhdr01tp IMPLEMENTATION.
 
   METHOD zzgetadditionaldetails.
 
+    DATA: lt_update TYPE TABLE FOR UPDATE zr_supplierinvhdr01tp.
+
     READ ENTITIES OF zr_supplierinvhdr01tp IN LOCAL MODE
         ENTITY supplierinvhdr
         ALL FIELDS WITH CORRESPONDING #( keys  )
@@ -36,6 +38,18 @@ CLASS lsc_zr_supplierinvhdr01tp IMPLEMENTATION.
           WHERE purchaseorder = @ls_hdr-ponumber
           INTO @DATA(ls_rec)
           PRIVILEGED ACCESS.
+
+*      APPEND VALUE #( %tky = ls_hdr-%tky
+*                      supplier = ls_hdr-Supplier
+*                      taxcode = ls_hdr-TaxCode
+*                      %control-supplier = if_abap_behv=>mk-on
+*                      %control-taxcode = if_abap_behv=>mk-on )
+*        TO lt_update.
+*
+*     MODIFY ENTITIES OF ZR_SupplierInvHdr01TP IN LOCAL MODE
+*        ENTITY SupplierInvHdr
+*        UPDATE FIELDS ( Supplier TaxCode )
+*        WITH lt_update.
 
     ENDIF.
 
@@ -71,7 +85,7 @@ CLASS lsc_zr_supplierinvhdr01tp IMPLEMENTATION.
 
         APPEND VALUE #(
             %tky = ls_hdr-%tky
-            %element-InvoiceNumber = if_abap_behv=>mk-on
+            %element-invoicenumber = if_abap_behv=>mk-on
             %state_area = 'DUPLICATE POSTING'
             %msg = new_message_with_text(
                 severity = if_abap_behv_message=>severity-error

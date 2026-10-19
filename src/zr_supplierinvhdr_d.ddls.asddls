@@ -33,6 +33,8 @@ define view entity ZR_SupplierInvHdr_D
   createdby as CreatedBy,
   lastchangedby as LastChangedBy,
   lastchangedat as LastChangedAt,
+  supplier as Supplier,
+  taxcode as TaxCode,
   locallastchangedat as LocalLastChangedAt,
   draftentitycreationdatetime as Draftentitycreationdatetime,
   draftentitylastchangedatetime as Draftentitylastchangedatetime,

@@ -1,15 +1,5 @@
-class ZBP_R_SUPPLIERINV definition
-  public
-  abstract
-  final
-  create public .
-
-public section.
-protected section.
-private section.
+CLASS zbp_r_supplierinv DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zr_supplierinvhdr01tp.
 ENDCLASS.
 
-
-
-CLASS ZBP_R_SUPPLIERINV IMPLEMENTATION.
+CLASS zbp_r_supplierinv IMPLEMENTATION.
 ENDCLASS.
